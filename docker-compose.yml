@@ -1,0 +1,16 @@
+version: "3.7"
+services: 
+  uwsgi:
+    build: ./app
+    environment:
+      TZ: "Asia/Tokyo"
+    ports: 
+      - "3031:3031"
+  nginx:
+    build: ./nginx
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+        - "./volumes/nginx_log:/var/log/nginx"
+    ports:
+      - "8080:80"
